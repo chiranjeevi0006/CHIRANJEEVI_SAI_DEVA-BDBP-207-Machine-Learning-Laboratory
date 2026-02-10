@@ -1,12 +1,12 @@
 import pandas as pd
 import numpy as np
-
+from sklearn.model_selection import train_test_split
 # read csv
 df = pd.read_csv("simulated_data_multiple_linear_regression_for_ML.csv")
 
 X = df.drop(columns=["disease_score_fluct"]).values #x contains all the input
 y = df["disease_score_fluct"].values.reshape(-1,1) # y has the output we need to predict and we reshaped to cplumn vector
-
+print(X.shape)
 # feature scaling is done, this helps all features are same range
 #this helps gradient descent to converge faster
 X = (X - X.mean(axis=0)) / X.std(axis=0)
@@ -44,7 +44,3 @@ theta_ne = np.linalg.inv(X.T.dot(X)).dot(X.T).dot(y)
 
 print("normal equation theta")
 print(theta_ne)
-
-
-
-
